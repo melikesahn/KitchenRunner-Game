@@ -163,29 +163,34 @@ public class PlayerController : MonoBehaviour
   {
     return _isSliding;
   }
-  
-  
+
+
   public void SetMovementSpeed(float speed, float duration)
   {
     _movementSpeed += speed;
     Invoke(nameof(ResetMovementSpeed), duration);
   }
 
-    private void ResetMovementSpeed()
-    {
-        _movementSpeed = _startingMovementSpeed;
-    }
+  private void ResetMovementSpeed()
+  {
+    _movementSpeed = _startingMovementSpeed;
+  }
 
-    public void SetJumpForce(float force, float duration)
-    {
-        _jumpForce += force;
-        Invoke(nameof(ResetJumpForce), duration);
-    }
+  public void SetJumpForce(float force, float duration)
+  {
+    _jumpForce += force;
+    Invoke(nameof(ResetJumpForce), duration);
+  }
 
-    private void ResetJumpForce()
-    {
-        _jumpForce = _startingJumpForce;
-    }
+  private void ResetJumpForce()
+  {
+    _jumpForce = _startingJumpForce;
+  }
+
+  public Rigidbody GetPlayerRigidbody()
+  {
+    return _playerRigidbody;
+  }
 #endregion
 
 }

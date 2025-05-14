@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class RedWheatCollectible : MonoBehaviour,ICollectible
 {
+    [SerializeField] private WheatDesignSO _wheatDesingSO;
     [SerializeField] private PlayerController _playerController;
-    [SerializeField] private float _forceIncreaseSpeed;
-    [SerializeField] private float _resetBoostDuration;
+    
     
 
     public void Collect()
     {
-        _playerController.SetJumpForce(_forceIncreaseSpeed, _resetBoostDuration);
+        _playerController.SetJumpForce(_wheatDesingSO.IncreaseDecreaseMultiplier,_wheatDesingSO.ResetBoostDuration);
         Destroy(gameObject);
         
     }
