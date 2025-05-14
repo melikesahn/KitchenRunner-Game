@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
   public event Action OnPlayerJumped;
+  public event Action <PlayerState> OnPlayerStateChanged;
   [SerializeField] private Transform _orientationTransform;
   [SerializeField] private float _movementSpeed;
   [SerializeField] private KeyCode _movementKey;
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour
     if (newState != currentState)
     {
       _stateController.ChangeState(newState);
+      OnPlayerStateChanged?.Invoke(newState);
 
     }
 
