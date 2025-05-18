@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private int _currentEggCount;
     private GameState _currentGameState;
     [SerializeField] private EggCounterUI _eggCounterUI;
+     [SerializeField] private WinLoseUI _winLoseUI;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
             //win
             _eggCounterUI.SetEggCompleted();
             ChangeGameState(GameState.GameOver);
+            _winLoseUI.OnGameWin();
         }
 
     }
