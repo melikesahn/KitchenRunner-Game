@@ -1,9 +1,18 @@
 using UnityEngine;
+using System;
 
 public class HealthManager : MonoBehaviour
 {
+    public static HealthManager Instance { get; private set;}
+    public event Action OnPlayerHealth;
+    [SerializeField] private PlayerHealthUI _playerHealthUI;
     [SerializeField] private int _maxHealth = 3;
     private int _currentHealth;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -15,11 +24,11 @@ public class HealthManager : MonoBehaviour
         if (_currentHealth > 0)
         {
             _currentHealth -= damageAmount;
-            //TODO:
+            _playerHealthUI.AnimateDamage();
 
             if (_currentHealth <= 0)
             {
-                //TODO:
+                OnPlayerHealth?.Invoke();
             }
 
         }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,11 +11,22 @@ public class GameManager : MonoBehaviour
     private GameState _currentGameState;
     [SerializeField] private EggCounterUI _eggCounterUI;
      [SerializeField] private WinLoseUI _winLoseUI;
+    [SerializeField] private float _delay;
 
     private void Awake()
     {
         Instance = this;
     }
+    void Start()
+    {
+        HealthManager.Instance.OnPlayerHealth += HealthManager_OnPlayerHealth;
+    }
+
+    private void HealthManager_OnPlayerHealth()
+    {
+        StartCoroutine(OnGameOver());
+    }
+
     private void OnEnable()
     {
         ChangeGameState(GameState.Play);
@@ -40,6 +52,14 @@ public class GameManager : MonoBehaviour
             _winLoseUI.OnGameWin();
         }
 
+    }
+    private IEnumerator OnGameOver()
+    {
+        yield return new WaitForSeconds(_delay);
+        //Instantiate(_fightingParticles, playerTransform.position, _fightingParticles.transform.rotation);
+        ChangeGameState(GameState.GameOver);
+        _winLoseUI.OnGameOver();
+        //if(isCatCatched) _audioManager.Play(SoundType.CatSound);
     }
     public GameState GetCurrentGameState()
     {
