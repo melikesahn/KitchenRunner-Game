@@ -6848,7 +6848,7 @@ MonoBehaviour:
   _maxEggCount: 5
   _eggCounterUI: {fileID: 310035113}
   _winLoseUI: {fileID: 736970384}
-  _delay: 0
+  _delay: 0.5
 --- !u!4 &1595667112
 Transform:
   m_ObjectHideFlags: 0

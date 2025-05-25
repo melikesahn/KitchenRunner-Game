@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6186161447155599067}
   - component: {fileID: 7063178398161372354}
   - component: {fileID: 4005479006124724760}
+  - component: {fileID: 6196228173799411289}
   m_Layer: 0
   m_Name: RedWheat
   m_TagString: RedWheat
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheatDesingSO: {fileID: 11400000, guid: 368152e7015ca724a9456f95570aeb6c, type: 2}
   _playerController: {fileID: 0}
+  _playerStateUI: {fileID: 0}
 --- !u!65 &4005479006124724760
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69,6 +71,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0292414, z: 0.21047616}
   m_Center: {x: 0, y: -0.18589324, z: 0.010443479}
+--- !u!208 &6196228173799411289
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2996859811778587754}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7642356731131046499
 GameObject:
   m_ObjectHideFlags: 0
