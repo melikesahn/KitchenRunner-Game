@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MaskTransitions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,13 +27,18 @@ public class SettingsUı : MonoBehaviour
         // _musicButton.onClick.AddListener(OnMusicButtonClicked);
         //_soundButton.onClick.AddListener(OnSoundButtonClicked);
         _resumeButton.onClick.AddListener(OnResumeButtonClicked);
-       // _mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked); 
+        _mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked); 
+    }
+    private void OnMainMenuButtonClicked()
+    {
+        
+        TransitionManager.Instance.LoadLevel(Consts.SceneNames.MENU_SCENE);
     }
 
     private void OnSettingsButtonClicked()
     {
         //_audioManager.Play(SoundType.ButtonClickSound);
-         GameManager.Instance.ChangeGameState(GameState.Pause);
+        GameManager.Instance.ChangeGameState(GameState.Pause);
         _blackBackgroundObject.SetActive(true);
         _settingsPopupObject.SetActive(true);
         _blackBackgroundImage.DOFade(0.8f, _scaleDuration).SetEase(Ease.Linear);
