@@ -1,18 +1,20 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class CatController : MonoBehaviour
 {
+     public event Action OnCatCatched;
+
     [SerializeField] private Transform _playerTransform;
-    // [SerializeField] private CinemachineCamera _catCinemachineCamera;
     [SerializeField] private float _defaultSpeed = 5f;
     [SerializeField] private float _chaseSpeed = 7f;
     [SerializeField] private float _waitTime = 2f;
     [SerializeField] private float _patrolRadius = 10f;
     [SerializeField] private int _maxDestinationAttempts = 10;
-    [SerializeField] private float _chaseDistanceThreshold = 1.5f;
-    [SerializeField] private float _chaseDistance = 2f;
+    [SerializeField] private float _chaseDistanceThreshold = 3f;
+    [SerializeField] private float _chaseDistance = 1.5f;
     [SerializeField] private PlayerController _playerController;
     private NavMeshAgent _catAgent;
     private Vector3 _initialPosition;
@@ -23,36 +25,28 @@ public class CatController : MonoBehaviour
     private void Awake()
     {
         _catAgent = GetComponent<NavMeshAgent>();
+        _catStateController = GetComponent<CatStateController>();
     }
 
     private void Start()
     {
-        /* _catAgent = GetComponent<NavMeshAgent>();
-        if (_catAgent == null)
-        {
-            Debug.LogError("NavMeshAgent component missing from this GameObject. Please add one.");
-            enabled = false;
-            return;
-        }*/
-
         _initialPosition = transform.position;
-
         SetRandomDestination();
     }
     private void Update()
     {
-        if(!_playerController.CanCatChase())
+        if(_playerController.CanCatChase())
         {
             SetChaseMovement();
-         
         }
-         else
+        else
         {
             SetPatrolMovement();
         }
     }
      private void SetChaseMovement()
     {
+        _isChasing = true;
         Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
         Vector3 offsetPosition = _playerTransform.position - directionToPlayer * _chaseDistanceThreshold;
         _catAgent.SetDestination(offsetPosition);
@@ -61,11 +55,8 @@ public class CatController : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _playerTransform.position) <= _chaseDistance && _isChasing)
         {
-           // _catCinemachineCamera.Priority = 2;
+            OnCatCatched?.Invoke();
             _catStateController.ChangeState(CatState.Attacking);
-            //_cameraShake.ShakeCamera(1.5f, 2f, 0.5f);
-            //OnCatCatched?.Invoke(_playerTransform);
-            //_playerHealthUI.AnimateDamageForAll();
             _isChasing = false;
         }
     }

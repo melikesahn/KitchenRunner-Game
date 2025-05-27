@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public event Action<GameState> OnGameStateChanged;
+    [SerializeField] private CatController _catController;
+    [SerializeField] private PlayerHealthUI _playerHealthUI;
     [SerializeField] private int _maxEggCount;
     private int _currentEggCount;
     private GameState _currentGameState;
@@ -20,6 +22,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         HealthManager.Instance.OnPlayerHealth += HealthManager_OnPlayerHealth;
+        _catController.OnCatCatched += CatController_OnCatCatched;
+    }
+
+    private void CatController_OnCatCatched()
+    {
+        _playerHealthUI.AnimateDamageForAll();
+         StartCoroutine(OnGameOver());
     }
 
     private void HealthManager_OnPlayerHealth()
