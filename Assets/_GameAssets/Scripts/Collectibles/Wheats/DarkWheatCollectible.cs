@@ -26,6 +26,7 @@ public class DarkWheatCollectible : MonoBehaviour,ICollectible
          _playerStateUI.PlayBoosterUIAnimations(_playerBoosterTransform, _playerBoosterImage,
         _playerStateUI.GetDarkBoosterWheatImage, _wheatDesingSO.ActiveSprite, _wheatDesingSO.PassiveSprite,
         _wheatDesingSO.ActiveWheatSprite, _wheatDesingSO.PassiveWheatSprite,_wheatDesingSO.ResetBoostDuration);
+         CameraShake.Instance.ShakeCamera(0.5f, 0.5f);
 
         Destroy(gameObject);
 

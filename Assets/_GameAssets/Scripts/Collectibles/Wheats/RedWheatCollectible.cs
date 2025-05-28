@@ -26,6 +26,8 @@ public class RedWheatCollectible : MonoBehaviour,ICollectible
         _playerStateUI.GetRedBoosterWheatImage, _wheatDesingSO.ActiveSprite, _wheatDesingSO.PassiveSprite,
         _wheatDesingSO.ActiveWheatSprite, _wheatDesingSO.PassiveWheatSprite,_wheatDesingSO.ResetBoostDuration);
 
+         CameraShake.Instance.ShakeCamera(0.5f, 0.5f);
+
         Destroy(gameObject);
         
     }
