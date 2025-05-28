@@ -31,12 +31,14 @@ public class SettingsUı : MonoBehaviour
     }
     private void OnMainMenuButtonClicked()
     {
+        AudioManager.Instance.Play(SoundType.TransitionSound);
         
         TransitionManager.Instance.LoadLevel(Consts.SceneNames.MENU_SCENE);
     }
 
     private void OnSettingsButtonClicked()
     {
+        AudioManager.Instance.Play(SoundType.ButtonClickSound);
         //_audioManager.Play(SoundType.ButtonClickSound);
         GameManager.Instance.ChangeGameState(GameState.Pause);
         _blackBackgroundObject.SetActive(true);
@@ -47,8 +49,9 @@ public class SettingsUı : MonoBehaviour
     }
     private void OnResumeButtonClicked()
     {
+        AudioManager.Instance.Play(SoundType.ButtonClickSound);
         //_audioManager.Play(SoundType.ButtonClickSound);
-        
+
         _blackBackgroundImage.DOFade(0f, _scaleDuration).SetEase(Ease.Linear);
         _settingsPopupObject.transform.DOScale(0f, _scaleDuration).SetEase(Ease.OutExpo).OnComplete(() =>
         {
