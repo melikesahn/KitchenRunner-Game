@@ -66,7 +66,7 @@ public class SettingsUı : MonoBehaviour
     private void OnSettingsButtonClicked()
     {
         AudioManager.Instance.Play(SoundType.ButtonClickSound);
-        // AudioManager.Play(SoundType.ButtonClickSound);
+       
         GameManager.Instance.ChangeGameState(GameState.Pause);
         _blackBackgroundObject.SetActive(true);
         _settingsPopupObject.SetActive(true);
@@ -77,7 +77,7 @@ public class SettingsUı : MonoBehaviour
     private void OnResumeButtonClicked()
     {
         AudioManager.Instance.Play(SoundType.ButtonClickSound);
-        //  AudioManager.Play(SoundType.ButtonClickSound);
+        
 
         _blackBackgroundImage.DOFade(0f, _scaleDuration).SetEase(Ease.Linear);
         _settingsPopupObject.transform.DOScale(0f, _scaleDuration).SetEase(Ease.OutExpo).OnComplete(() =>
